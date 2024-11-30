@@ -31,8 +31,8 @@ function search(e){
 
     .then((res)=> res.json())
     .then((data)=> {
-        Array.from(data.results).forEach((image)=> {
-            addImagetoUI(image.urls.small)
+        Array.from(data.results).forEach((image, index)=> {
+            addImagetoUI(image.urls.small, index)
             })
     })
 
@@ -45,16 +45,13 @@ function search(e){
     e.preventDefault();
 }
 
-function addImagetoUI(url){
+function addImagetoUI(url, index){
 
-    const div = document.createElement("div");
+    const div = ImageListWrapper.children[index];
     div.className="card";
 
-    const img= document.createElement("img");
+    const img = div.children[0];
     img.setAttribute("src", url);
     img.width= "400";
     img.height= "400";
-
-    div.append(img);
-    ImageListWrapper.append(div);
 }
